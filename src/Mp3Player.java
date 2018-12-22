@@ -4,13 +4,18 @@ import java.util.HashMap;
 
 public class Mp3Player extends JFrame {
 
+    //maps mp3 titles to index in players
     private HashMap<String, Integer> library;
+    //contains all the songs the user has uploaded
     public Playlist mySongs;
+    //contains individual mp3players for each song
     private ArrayList<Mp3> players;
+    //counts number of mp3players created in players
     private int songsAdded = 0;
+    //counts current index of song being played
     private int songsPlayed = 0;
+    //returns true if a song is currently playing
     boolean IS_PLAYING = false;
-    public Playlist test;
 
     public Mp3Player() {
 
@@ -18,7 +23,6 @@ public class Mp3Player extends JFrame {
         library = new HashMap<>();
         mySongs = new Playlist();
         players = new ArrayList<>();
-        test = new Playlist();
     }
 
     public void addSong(String title, String filename) {
