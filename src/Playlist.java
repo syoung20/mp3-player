@@ -17,23 +17,19 @@ public class Playlist {
 
     }
 
-    public int getCurrent() {
+    public String getCurrentSong() {
 
-        int toReturn;
+        if (!playlist.isEmpty()) {
 
-        if (playlist.isEmpty()) {
-            toReturn = -1;
+            return (playlist.get(current))
         }
 
-        else {
-            toReturn = current;
-        }
-
-        return toReturn;
+        return null;
 
     }
 
-    public void addCurrent() {
+    //sets current song counter to the next song
+    public void setNext() {
         if (current == playlist.size() - 1) {
             current = 0;
         } else {
@@ -41,33 +37,32 @@ public class Playlist {
         }
     }
 
-    public void subtractCurrent() {
+    //sets current song counter to the previous song
+    public void setPrev() {
         if (current > 0) {
             current -= 1;
         }
     }
 
+    //add a song to the playlist
     public void add(String title) {
 
         playlist.add(title);
 
     }
 
+    //delete a song from the playlist
     public void delete(String title) {
 
         playlist.remove(title);
 
     }
 
+    //add a song to the playlist at a specific index
     public void add(String title, int placement) {
 
         playlist.add(placement, title);
 
     }
 
-    public void move(String title, int placement) {
-
-
-
-    }
 }

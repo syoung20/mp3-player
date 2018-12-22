@@ -43,9 +43,10 @@ public class Mp3Player extends JFrame {
             public void run() {
                 while (true) {
                     try {
-                        players.get(library.get(mySongs.get(p.getCurrent()))).play();
+                        players.get(library.get(p.getCurrentSong)).play();
+                        //if IS_PLAYING is still true (stop was not pressed), set the next song to play
                         if (IS_PLAYING) {
-                            p.addCurrent();
+                            p.setNext();
                         }
                         break;
                     } catch (Exception e) {
@@ -55,8 +56,7 @@ public class Mp3Player extends JFrame {
                 }
             }
         }
-        runner toPlay = new runner();
-        Thread playing = new Thread(toPlay);
+        Thread playing = new Thread(new runner());
         if (!IS_PLAYING) {
             IS_PLAYING = true;
             playing.start();
@@ -66,7 +66,7 @@ public class Mp3Player extends JFrame {
     public void stopSong(Playlist p) {
         if (IS_PLAYING) {
             IS_PLAYING = false;
-            players.get(library.get(mySongs.get(p.getCurrent()))).close();
+            players.get(library.get(p.getCurrentSong)).close();
 
         }
     }
@@ -75,7 +75,7 @@ public class Mp3Player extends JFrame {
         if (IS_PLAYING) {
             stopSong(p);
         }
-        p.addCurrent();
+        p.setNext();
         playSong(p);
     }
 
@@ -83,7 +83,7 @@ public class Mp3Player extends JFrame {
         if (IS_PLAYING) {
             stopSong(p);
         }
-        p.subtractCurrent();
+        p.setPrev();
         playSong(p);
 
     }
